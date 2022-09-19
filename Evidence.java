@@ -27,13 +27,13 @@ public class Evidence {
         System.out.println("Zadejte věk pojištěnce: ");
         byte vek = (byte) Integer.parseInt(sc.nextLine().trim());
         System.out.println("Děkujeme, nyní ještě telefonní číslo a email:  ");
-        System.out.println("Telefonní číslo :");
+        System.out.println("Telefonní číslo (bez předvolby +420 ) :");
         String telCislo = sc.nextLine().trim();
         System.out.println("Email: ");
         String email = sc.nextLine();
         String chyba;
         if ((jmeno.length() < 3 || (jmeno.length() > 20) || (jmeno.equals("")) && (prijmeni.equals(""))
-                || ((vek < 1 || (vek > 125)) || (telCislo.length() != 9) || (!email.contains("@"))))) {
+                || ((vek < 1 || (vek > 125)) || (telCislo.length() != 9) || (!email.contains("@")))) || (!email.contains("."))) {
             chyba = ("Chybně zadané údaje.Zadejte, prosím, znovu: ");
             System.out.println(chyba);
 
@@ -61,23 +61,38 @@ public class Evidence {
     public void vyhledatZaznam() {
         System.out.println("Zadejte vybrané jméno a příjmení pro vyhledání v databázi: ");
         //zadání textu uživatelem
-        String[]vyhledane = sc.nextLine().toUpperCase().trim().split(" ");
-        if (vyhledane.equals(databaze.vyhledatZaznam(vyhledane[0], vyhledane[1]))){
-            /**
-             *
-             */
-            ArrayList<Zaznam> zaznamy = databaze.vyhledatZaznam(vyhledane[0], vyhledane[1]);
-            System.out.println("Nalezený údaj: ");
+        String[] vyhledane = sc.nextLine().toUpperCase().trim().split(" ");
+        ArrayList<Zaznam> zaznamy = databaze.vyhledatZaznam(vyhledane[0], vyhledane[1]);
+
+
+        if (zaznamy.isEmpty()) {
+            System.out.println("Záznam nenalezen.");
+            System.out.println("\nChcete pokračovat novým zadáním? [ano/ne]");
+
+            String volba = sc.nextLine().trim();
+            if (volba.equals("ano")) {
+                vyhledatZaznam();
+            } else {
+                System.out.println("Program bude ukončen.");
+            }
+        } else {
+            System.out.println("Nalezený údaj:\n ");
             System.out.println(zaznamy);
-        }else{
-            System.out.println("Záznamy podle Vašeho zadání nebyly nalezeny." +
-                    "\n" +
-                    "Zkuste nové zadání: ");
+            System.out.println("\nChcete pokračovat novým zadáním? [ano/ne]");
+            String volba = sc.nextLine().trim();
+            if (volba.equals("ano")) {
+                vyhledatZaznam();
+            } else {
+                System.out.println("Program bude ukončen.");
 
-
+            }
         }
-
-
     }
 }
+
+
+
+
+
+
 
