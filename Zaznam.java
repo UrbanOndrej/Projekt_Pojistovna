@@ -39,7 +39,7 @@ public class Zaznam {
     }
     @Override
     public String toString(){
-        return jmeno + " " +  prijmeni + "\nVěk " + vek + " let" +
+        return jmeno + " " +  prijmeni + "\nVěk: " + vek + " let" +
                 "\nKontakt: \nTel.číslo: +420 " + telCislo + "\nEmail: " + email;
     }
 }
