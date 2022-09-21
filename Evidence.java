@@ -77,7 +77,9 @@ public class Evidence {
             }
         } else {
             System.out.println("Nalezený údaj:\n ");
-            System.out.println(zaznamy);
+            for (Zaznam zaznam:zaznamy){
+                System.out.println(zaznam);
+            }
             System.out.println("\nChcete pokračovat novým zadáním? [ano/ne]");
             String volba = sc.nextLine().trim();
             if (volba.equals("ano")) {

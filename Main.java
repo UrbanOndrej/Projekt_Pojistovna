@@ -31,7 +31,7 @@ public class Main {
                 case "3" -> evidence.vyhledatZaznam();
                 case "4" -> out.println("Program byl ukončen.");
                 default ->
-                        out.println("Volba je neplatná, libovolnou klávesou ukončete program a zadejte novou volbu.");
+                        out.println("Volba je neplatná, zadejte novou volbu.");
             }
         }
     }
